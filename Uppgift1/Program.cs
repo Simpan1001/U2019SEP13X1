@@ -18,7 +18,6 @@ namespace UppgiftsProjekt1309
             int e = phrase.Length;
             int letterCount = 0;
             int wordCount = 1;
-            int[] list = new int[150];
 
 
             for (int i = 0; i < e; i++) {
