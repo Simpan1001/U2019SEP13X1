@@ -12,9 +12,10 @@ namespace Uppgift3
         {
 
             Console.WriteLine("Var snäll och mata in en mening.");
-            string fras = Console.ReadLine();
-
+            string fras1 = Console.ReadLine();
+            string fras = fras1.ToLower();
             string[] word = fras.Split(' ');
+            Console.WriteLine();
 
             int wordCount = 1;
             foreach (char a in fras)
@@ -43,13 +44,37 @@ namespace Uppgift3
                     }
                 }
 
-                if (wordAmount[j] < 0)
+                if (wordAmount[j] < 1)
                 {
                     Console.WriteLine("{0} ({1})", word[j], usage[j]);
                     wordAmount[j]++;
                 }
             }
-            
+
+            Console.WriteLine();
+            string temp = "";
+            Boolean sorted = false;
+
+                while (!sorted)
+                {
+                    sorted = true;
+                    for (int i = 0; i <= word.Length-1; i++)
+                    {
+                        if (usage[i] > usage[i + 1])
+                        {
+                            temp = word[i];
+                            word[i] = word[i + 1];
+                            word[i + 1] = temp;
+                            sorted = false;
+                        }
+                    }
+                }
+
+                Console.WriteLine("Continue");
+            for (int i = 0; i < word.Length; i++)
+            {
+                Console.WriteLine(word[i]);
+            }
             Console.ReadKey();
         }
     }
