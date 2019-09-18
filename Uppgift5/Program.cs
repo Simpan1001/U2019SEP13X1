@@ -38,7 +38,7 @@ namespace Uppgift5
             }
 
             Console.WriteLine("\nExiting program. . .");
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
