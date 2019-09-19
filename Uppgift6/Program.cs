@@ -41,7 +41,7 @@ namespace Uppgift6
             }
 
             Console.WriteLine("---------------------\nCongratulations! You guessed the corrcet number ({0})" +
-                " after {1} itterations.", temp, itteration);
+                " after {1} itteration(s).", temp, itteration);
             Console.ReadKey();
         }
     }
