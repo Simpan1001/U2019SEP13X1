@@ -54,6 +54,7 @@ namespace Uppgift7
                     else { leet += ' '; }
             }
             Console.WriteLine("\n"+leet);
+            Console.ReadKey();
         }
     }
 }
