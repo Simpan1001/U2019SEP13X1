@@ -18,7 +18,7 @@ namespace Uppgift4
             //string temp = "Hello world";
             string phrase = temp.ToLower();
             char[] letters = new char[phrase.Length];
-            int[] counter = new int[26];//26 letters of the english alphabet
+            int[] counter = new int[phrase.Length];
 
             //This loop assigns every value in counter the startingvalue of 0 \/
             for (int i = 0; i < counter.Length; i++)
@@ -50,21 +50,22 @@ namespace Uppgift4
             }
             //This loop counts the occurence of every character /\
 
+            
 
             int f = 0;
             int e = 1;
             for (int i = 0; i < letters.Length; i++)
             {
-                if (letters[i] != ' ')
+                if (counter[i] > 1)//This if-algorithm is wrong somewhere...
                 {
-                    if (counter[i] > 1)//This if-algorithm is wrong somewhere...
+                    f = counter[i];
+                    while (e < f)
                     {
-                        f = counter[i];
-                        while (e < f)
+                        for (int k = letters.Length - 1; k >= 0; k--)
                         {
-                            for (int k = letters.Length; k >= 0; k--)
+                            if (letters[k] == letters[i] && k != i)
                             {
-                                if (counter[k] == counter[i] && k != i)
+                                if (e != f + 1)
                                 {
                                     letters[k] = ' ';
                                     counter[k] = 0;
@@ -72,12 +73,12 @@ namespace Uppgift4
                                 }
                             }
                         }
-                        e = 1;
-                    }//End of if-algorithm
-                    if (letters[i] != ' ' && counter[i] != 0)
-                    {
-                        Console.WriteLine(" {0} ({1})", letters[i], counter[i]);
                     }
+                    e = 1;
+                }//End of if-algorithm
+                if (letters[i] != ' ' && letters[i] != '.' && letters[i] != ',')
+                {
+                    Console.WriteLine(" {0} ({1})", letters[i], counter[i]);
                 }
             }
 
