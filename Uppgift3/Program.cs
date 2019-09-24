@@ -10,101 +10,65 @@ namespace Uppgift3
     {
         static void Main(string[] args)
         {
-
-            System.Collections.ArrayList MyList = new System.Collections.ArrayList();
-            int[] frequency = new int[MyList.Count];
-
-            Console.WriteLine("Please input a sentence.");
-            string mening = Console.ReadLine();
-            string[] temp = mening.Split(' ');
+            //Låt användaren mata in en mening.
+            //Skriv ut varje unikt ord på en egen rad, och ange hur ofta ordet förekommer(ex "och (2)")
+            //Skriv ut varje unikt ord på en egen rad, sorterat efter hur ofta ordet förekommer
+            Console.WriteLine("Please input a sentence, young one.");
+            string temp = Console.ReadLine();
+            string tempo = temp.ToLower();
+            string[] words = tempo.Split();
+            int[] counter = new int[words.Length];
             Console.WriteLine();
 
-            for (int i = 0; i < temp.Length; i++)
+            for (int i = 0; i < counter.Length; i++)
             {
-                MyList.Add(temp[i]);
-            }
-           
-            string[] wordCounter = new string[MyList.Count];
-
-            for (int i = 0; i < wordCounter.Length; i++)
-            {
-                wordCounter[i] = "1";
+                counter[i] = 0;
             }
 
-            if (String.Equals(MyList[0], MyList[1]))
+            //This method counts every word and how much it occurs. Multiples still occur \/
+            for (int i = 0; i < words.Length; i++)
             {
-                wordCounter[0]+=1;
-            }
-
-            for (int j = 0; j < MyList.Count; j++)
-            {
-                for (int i = 0; i < MyList.Count; i++)
+                for (int j = 0; j < words.Length; j++)
                 {
-                    if (String.Equals(MyList[j], MyList[i]) && i != j && MyList[j] != "" && MyList[i] != "")
+                    if (words[j] == words[i])
                     {
-                        MyList[i] = "";
-                        wordCounter[i] = "";
-                        wordCounter[j] += 1;
+                        counter[j]++;
                     }
                 }
             }
+            //This method counts every word and how much it occurs. Multiples still occur /\
 
-            int c = 0;
-            int b = 0;
-            for (int i = 0; i < MyList.Count; i++)
+            int f = 0;
+            int e = 1;
+            //This method makes every word only print out once \/
+            for (int i = 0; i < words.Length; i++)
             {
-                foreach (char a in wordCounter[i])
+                if (counter[i] > 1)
                 {
-                    b++;
+                    f = counter[i];
+                    while (e < f)
+                    {
+                        for (int k = words.Length - 1; k >= 0; k--)
+                        {
+                            if (words[k] == words[i] && k != i)
+                            {
+                                if (e != f + 1)
+                                {
+                                    words[k] = " ";
+                                    counter[k] = 0;
+                                    e++;
+                                }
+                            }
+                        }
+                    }
+                    e = 1;
                 }
-                if (b != 0)
+                if (words[i] != " " && words[i] != " " && words[i] != " ")
                 {
-                    c++;
-                    Console.WriteLine(MyList[i] + " (" + b + ")");
-                }
-                b = 0;
-            }
-
-            int[] order = new int[c];
-            int d = 0;
-            for (int i = 0; i < order.Length; i++)
-            {
-                if (wordCounter[i].Count() == 0)
-                {
-                    d++;
-                }
-                order[i] = wordCounter[d].Count();
-                d++;
-            }
-
-            System.Collections.ArrayList tempy = new System.Collections.ArrayList();
-
-            for (int i = 0; i < MyList.Count; i++)
-            {
-                tempy.Add(" ");
-            }
-
-            int temporary = 0;
-            for (int i = 0; i <= order.Length - 2; i++)
-            {
-                if (order[i] > order[i+1])
-                {
-                    temporary = order[i + 1];
-                    order[i + 1] = order[i];
-                    order[i] = temporary;
-
-                    tempy[0] = MyList[i + 1];
-                    MyList[i + 1] = MyList[i];
-                    MyList[i] = tempy[0];
+                    Console.WriteLine(" {0} ({1})", words[i], counter[i]);
                 }
             }
-            Console.WriteLine();
-            for (int i = 0; i <= MyList.Count-1; i++)
-            {
-                    Console.WriteLine(MyList[i]);
-            }
-
-            Console.ReadKey();
+            //This method makes every word only print out once /\
         }
     }
 }

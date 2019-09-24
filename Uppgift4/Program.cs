@@ -56,7 +56,7 @@ namespace Uppgift4
             int e = 1;
             for (int i = 0; i < letters.Length; i++)
             {
-                if (counter[i] > 1)//This if-algorithm is wrong somewhere...
+                if (counter[i] > 1)//This if-algorithm is wrong somewhere... (its FIXED acctually!)
                 {
                     f = counter[i];
                     while (e < f)
